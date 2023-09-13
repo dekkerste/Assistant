@@ -1,4 +1,5 @@
-﻿using System.Speech.Recognition;
+﻿using Assistant.Commands;
+using System.Speech.Recognition;
 
 namespace Assistant
 {
@@ -6,10 +7,10 @@ namespace Assistant
     {
         public static void InitializeSpeechRecognition()
         {
-            SpeechRecognitionEngine speechRecognitionEngine = new SpeechRecognitionEngine();
+            SpeechRecognitionEngine speechRecognitionEngine = new();
 
-            GrammarBuilder grammarBuilder = new GrammarBuilder(GetAllCommands());
-            Grammar grammar = new Grammar(grammarBuilder);
+            GrammarBuilder grammarBuilder = new(GetAllCommands());
+            Grammar grammar = new(grammarBuilder);
 
             speechRecognitionEngine.LoadGrammarAsync(grammar);
             speechRecognitionEngine.SetInputToDefaultAudioDevice();
@@ -20,12 +21,37 @@ namespace Assistant
 
         private static void SpeechRecognitionEngine_SpeechRecognized(object? sender, SpeechRecognizedEventArgs e)
         {
-            var speech = e.Result.Text;
+            string speech = e.Result.Text;
+
+            var result = GetInumeralList().Select(s => s.CommandResult(speech).Where(w => !w.Equals("")));
         }
 
         private static Choices GetAllCommands()
         {
-            return new Choices("hello world");
+            return (Choices)GetInumeralList().Select(s => s.SetCommands());
+        }
+
+        // temporary solution
+        // this is purely to prevent to rewrite the same code
+        private static List<ICommands> GetInumeralList()
+        {
+            List<ICommands> commands = new()
+            {
+                new BasicCommands(),
+            };
+
+            return commands;
+        }
+
+        public static CommandsClass SetCommand(List<string> input, string check)
+        {
+            CommandsClass commandsClass = new()
+            {
+                CommandInput = input,
+                CommandCheck = check,
+            };
+
+            return commandsClass;
         }
     }
 }

@@ -2,8 +2,10 @@
 {
     internal interface ICommands
     {
-        List<string> GetCommands();
+        List<CommandsClass> SetCommands();
 
-        string CommandResult();
+        //List<string> GetCommands();
+
+        string CommandResult(string command);
     }
 }
