@@ -1,5 +1,7 @@
 ﻿using Assistant.Commands;
+using Microsoft.VisualBasic.Logging;
 using System.Speech.Recognition;
+using System.Speech.Synthesis;
 
 namespace Assistant
 {
@@ -40,7 +42,9 @@ namespace Assistant
             {
                 if (commandCode != null)
                 {
-                    command.CommandResult(commandCode);
+                    string responce = command.CommandResult(commandCode);
+
+                    AssistantResponce(speech, responce, true);
                 }
             }
         }
@@ -101,6 +105,28 @@ namespace Assistant
             };
 
             return commandsClass;
+        }
+
+        public static void AssistantResponce(string userText, string assistantResponce, bool assistantSpeak = false, bool assistantResponcePrefix = true)
+        {
+            // maybe there's another solution to write to the richTextBox?
+            RichTextBox assistantLog = Application.OpenForms["AssistantForm"].Controls["AssistantLog"] as RichTextBox;
+            assistantLog.AppendText($"User: {userText}\n");
+
+            if (assistantResponcePrefix)
+            {
+                assistantLog.AppendText($"Assistant: {assistantResponce}\n");
+            }
+            else
+            {
+                assistantLog.AppendText($"{assistantResponce}\n");
+            }
+
+            if (assistantSpeak)
+            {
+                SpeechSynthesizer synthesizer = new();
+                synthesizer.SpeakAsync($"{assistantResponce}\n");
+            }
         }
     }
 }

@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Log = new RichTextBox();
-            Input = new TextBox();
+            AssistantLog = new RichTextBox();
+            AssistnatInput = new TextBox();
             AssistantPost = new Button();
             SuspendLayout();
             // 
-            // Log
+            // AssistantLog
             // 
-            Log.BackColor = Color.Black;
-            Log.ForeColor = Color.White;
-            Log.Location = new Point(12, 12);
-            Log.Name = "Log";
-            Log.ReadOnly = true;
-            Log.ScrollBars = RichTextBoxScrollBars.Vertical;
-            Log.Size = new Size(920, 448);
-            Log.TabIndex = 2;
-            Log.TabStop = false;
-            Log.Text = "";
+            AssistantLog.BackColor = Color.Black;
+            AssistantLog.ForeColor = Color.White;
+            AssistantLog.Location = new Point(12, 12);
+            AssistantLog.Name = "AssistantLog";
+            AssistantLog.ReadOnly = true;
+            AssistantLog.ScrollBars = RichTextBoxScrollBars.Vertical;
+            AssistantLog.Size = new Size(920, 448);
+            AssistantLog.TabIndex = 2;
+            AssistantLog.TabStop = false;
+            AssistantLog.Text = "";
             // 
-            // Input
+            // AssistnatInput
             // 
-            Input.BackColor = Color.Black;
-            Input.ForeColor = Color.White;
-            Input.Location = new Point(12, 466);
-            Input.Name = "Input";
-            Input.Size = new Size(839, 23);
-            Input.TabIndex = 0;
-            Input.TabStop = false;
+            AssistnatInput.BackColor = Color.Black;
+            AssistnatInput.ForeColor = Color.White;
+            AssistnatInput.Location = new Point(12, 466);
+            AssistnatInput.Name = "AssistnatInput";
+            AssistnatInput.Size = new Size(839, 23);
+            AssistnatInput.TabIndex = 0;
+            AssistnatInput.TabStop = false;
             // 
             // AssistantPost
             // 
@@ -73,8 +73,8 @@
             BackColor = Color.FromArgb(64, 64, 64);
             ClientSize = new Size(944, 501);
             Controls.Add(AssistantPost);
-            Controls.Add(Input);
-            Controls.Add(Log);
+            Controls.Add(AssistnatInput);
+            Controls.Add(AssistantLog);
             Name = "AssistantForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Assistant";
@@ -84,8 +84,8 @@
 
         #endregion
 
-        private RichTextBox Log;
-        private TextBox Input;
+        private RichTextBox AssistantLog;
+        private TextBox AssistnatInput;
         private Button AssistantPost;
     }
 }
