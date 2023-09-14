@@ -11,8 +11,8 @@
             List<CommandsClass> commandsList = new()
             {
                 AssistantController.SetCommand(sayHello, "SayHello"),
-                AssistantController.SetCommand(sayGoodbye, "SayHello"),
-                AssistantController.SetCommand(tellTime, "SayHello")
+                AssistantController.SetCommand(sayGoodbye, "SayGoodbye"),
+                AssistantController.SetCommand(tellTime, "TellTime")
             };
 
             return commandsList;
