@@ -32,11 +32,7 @@ namespace Assistant
                 .Select(s => s.CommandCheck)
                 .FirstOrDefault();
 
-            // run command
-            List<ICommands> commands = new()
-            {
-                new BasicCommands(),
-            };
+            List<ICommands> commands = GetInumeralListTemp();
 
             foreach (var command in commands)
             {
@@ -46,6 +42,7 @@ namespace Assistant
 
                     AssistantResponce(speech, responce, true);
                 }
+                break;
             }
         }
 
@@ -77,10 +74,7 @@ namespace Assistant
         // idea solution: create an <T>Class, where you can select the one or the other object type
         private static List<CommandsClass> GetInumeralList()
         {
-            List<ICommands> commands = new()
-            {
-                new BasicCommands(),
-            };
+            List<ICommands> commands = GetInumeralListTemp();
 
             List<CommandsClass>? result = commands
                 .Select(s => s.SetCommands())
@@ -94,6 +88,16 @@ namespace Assistant
             {
                 return new List<CommandsClass>();
             }
+        }
+        private static List<ICommands> GetInumeralListTemp()
+        {
+            // fix bug where only one of those will be seen / activated
+            List<ICommands> commands = new()
+            {
+                new BasicCommands(),
+                //new FunCommands(),
+            };
+            return commands;
         }
 
         public static CommandsClass SetCommand(List<string> input, string check)

@@ -7,12 +7,14 @@
             List<string> sayHello = new() { "Say hello." };
             List<string> sayGoodbye = new() { "Say bye.", "Say goodbye." };
             List<string> tellTime = new() { "What time is it?", "Tell me the time.", "What is the time?" };
+            List<string> CloseAssistant = new() { "Go away.", "Stop running." };
 
             List<CommandsClass> commandsList = new()
             {
                 AssistantController.SetCommand(sayHello, "SayHello"),
                 AssistantController.SetCommand(sayGoodbye, "SayGoodbye"),
-                AssistantController.SetCommand(tellTime, "TellTime")
+                AssistantController.SetCommand(tellTime, "TellTime"),
+                AssistantController.SetCommand(CloseAssistant, "CloseAssistant"),
             };
 
             return commandsList;
@@ -25,13 +27,17 @@
             switch (command)
             {
                 case "SayHello":
-                    result = "Hi";
+                    result = "Hello, sir.";
                     break;
                 case "SayGoodbye":
-                    result = "Bye";
+                    result = "Goodbye, sir.";
                     break;
                 case "TellTime":
-                    result = DateTime.Now.TimeOfDay.ToString();
+                    result = DateTime.Now.ToShortTimeString();
+                    break;
+                case "CloseAssistant":
+                    result = "Goodbye, sir.";
+                    Application.Exit();
                     break;
             }
 
